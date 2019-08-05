@@ -20,125 +20,7 @@ import com.ls.leetcode.util.Log;
  */
 public class AddTwoNumbers {
 
-    private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) {
-            return null;
-        }
-        if (l1 == null && l2 != null) {
-            return l2;
-        }
-        if (l2 == null && l1 != null) {
-            return l1;
-        }
-
-        ListNode newNode = null;
-        ListNode head = null;
-        int temp, addNum = 0;
-
-        while (l1 != null && l2 != null) {
-            temp = l1.val + l2.val + addNum;
-            if (newNode == null) {
-                if (temp >= 10) {
-                    newNode = new ListNode(temp - 10);
-                    addNum = 1;
-                } else {
-                    newNode = new ListNode(temp);
-                    addNum = 0;
-                }
-                head = newNode;
-                l1 = l1.next;
-                l2 = l2.next;
-            } else {
-                if (temp >= 10) {
-                    newNode.next = new ListNode(temp - 10);
-                    addNum = 1;
-                } else {
-                    newNode.next = new ListNode(temp);
-                    addNum = 0;
-                }
-                newNode = newNode.next;
-                l1 = l1.next;
-                l2 = l2.next;
-            }
-        }
-
-        if (l1 == null && l2 == null && addNum == 1) {
-            newNode.next = new ListNode(1);
-        }
-
-        ListNode tempNode = null;
-        if (l1 == null && l2 != null) {
-            tempNode = l2;
-        } else if (l1 != null && l2 == null) {
-            tempNode = l1;
-        }
-
-        while (tempNode != null) {
-            int r1 = tempNode.val + addNum;
-            if (r1 >= 10) {
-                newNode.next = new ListNode(r1 - 10);
-                addNum = 1;
-            } else {
-                newNode.next = new ListNode(r1);
-                addNum = 0;
-            }
-
-            newNode = newNode.next;
-            tempNode = tempNode.next;
-        }
-        if (addNum == 1) {
-            newNode.next = new ListNode(addNum);
-        }
-
-        return head;
-    }
-
-    /**
-     * 存在越界问题
-     * @param l1 链表1
-     * @param l2 链表2
-     * @return 新链表
-     */
-    public static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) {
-            return null;
-        }
-        if (l1 == null && l2 != null) {
-            return l2;
-        }
-        if (l2 == null && l1 != null) {
-            return l1;
-        }
-        long resultL1 = 0L;
-        int a = 0;
-        while (l1 != null) {
-            resultL1 += l1.val * Math.pow(10, a);
-            l1 = l1.next;
-            ++a;
-        }
-
-        long resultL2 = 0L;
-        int b = 0;
-        while (l2 != null) {
-            resultL2 += (long)(l2.val) * Math.pow(10, b);
-            l2 = l2.next;
-            ++b;
-        }
-
-        long result = resultL1 + resultL2;
-        String str = String.valueOf(result);
-        int len = str.length();
-        ListNode headResult;
-        ListNode head = new ListNode(Integer.valueOf(String.valueOf(str.charAt(len - 1))));
-        headResult = head;
-        for (int i = len - 2;i >= 0; i--) {
-            head.next = new ListNode(Integer.valueOf(String.valueOf(str.charAt(i))));
-            head = head.next;
-        }
-        return headResult;
-    }
-
-    public static void testAddTwoNumbers() {
+    public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
         //l1.next = new ListNode(4);
         //l1.next.next = new ListNode(3);
@@ -153,7 +35,35 @@ public class AddTwoNumbers {
             Log.log(String.valueOf(head.val));
             head = head.next;
         }
+    }
 
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(0);
+        ListNode curr = result;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int x = l1 == null? 0 : l1.val;
+            int y = l2 == null? 0 : l2.val;
+            int sum = x + y + carry;
+            carry = sum / 10;
+
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
+        }
+
+        return result.next;
     }
 
     public static class ListNode {
