@@ -51,8 +51,9 @@ public class ListLatButKNode {
             return null;
         }
 
-        ListNode pHead = node;
-        ListNode pBehind = node;
+        ListNode pHead = node; //头指针,记录走的位置
+        ListNode pBehind = node;//后指针,记录倒数K的位置
+        //1.先走K步
         for (int i = 0;i < k - 1; ++i) {
             if (pHead.next != null) {
                 pHead = pHead.next;
@@ -61,6 +62,7 @@ public class ListLatButKNode {
             }
         }
 
+        //2.再走n-k步,得到倒数第K的结点
         while (pHead != null) {
             pHead = pHead.next;
             pBehind = pBehind.next;
