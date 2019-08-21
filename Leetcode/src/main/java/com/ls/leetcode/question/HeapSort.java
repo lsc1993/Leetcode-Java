@@ -36,12 +36,20 @@ public class HeapSort {
      * @param array 需要排序的数组
      */
     static void heapSort(int[] array) {
-        buildMaxHeap(array);
+        //buildMaxHeap(array);
 
         int len = array.length;
-        for (int i = len - 1; i >= 0; --i) {
+        /*for (int i = len - 1; i >= 0; --i) {
             swap(array, 0, i);
             maxHeapfyLoop(array, 0, i);
+        }*/
+
+        System.out.println();
+        buildMaxHeapRecursion(array);
+
+        for (int i = len - 1; i >= 0; --i) {
+            swap(array, 0, i);
+            maxHeapfyRecursion(array, 0, i);
         }
     }
 
@@ -84,6 +92,27 @@ public class HeapSort {
         int len = a.length;
         for (int i = len / 2 -1; i>=0; --i) {
             maxHeapfyLoop(a, i, len);
+        }
+    }
+
+    static void maxHeapfyRecursion(int[] array, int index, int len) {
+        int childIndex = leftChild(index);
+        if (childIndex < len) {
+            int tmp = array[index];
+            if (childIndex != len - 1 && array[childIndex] < array[childIndex + 1]) {
+                childIndex ++;
+            }
+            if (tmp < array[childIndex]) {
+                swap(array, index, childIndex);
+                maxHeapfyRecursion(array, childIndex, len);
+            }
+        }
+    }
+
+    static void buildMaxHeapRecursion(int a[]) {
+        int len = a.length;
+        for (int i = len / 2 -1; i>=0; --i) {
+            maxHeapfyRecursion(a, i, len);
         }
     }
 
