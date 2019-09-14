@@ -2,6 +2,9 @@ package com.ls.leetcode.question;
 
 import com.ls.leetcode.util.Log;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Two Sum
  *
@@ -20,6 +23,18 @@ import com.ls.leetcode.util.Log;
  */
 public class TwoSum {
 
+    public static void main(String[] args) {
+        int[] nums = new int[]{2, 6, 7, 9};
+        int target = 9;
+        int[] result = twoSum2(nums, target);
+        Integer[] r = new Integer[2];
+        if (result != null) {
+            r[0] = result[0];
+            r[1] = result[1];
+            Log.printArray(r);
+        }
+    }
+
     private static int[] twoSum(int[] nums, int target) {
         if (nums == null || nums.length <= 1) {
             return null;
@@ -35,17 +50,19 @@ public class TwoSum {
         return null;
     }
 
-    public static void testTwoSum() {
-        int[] nums = new int[]{2, 6, 7, 9};
-        int target = 9;
-        int[] result = TwoSum.twoSum(nums, target);
-        Integer[] r = new Integer[2];
-        if (result != null) {
-            r[0] = result[0];
-            r[1] = result[1];
-        } else {
-            r = null;
+    static int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; ++ i) {
+            map.put(nums[i], i);
         }
-        Log.printArray(r);
+
+        for (int i = 0; i < nums.length; ++ i) {
+            int result = target - nums[i];
+            if (map.containsKey(result) && map.get(result) != i) {
+                return new int[]{i, map.get(result)};
+            }
+        }
+
+        return null;
     }
 }
