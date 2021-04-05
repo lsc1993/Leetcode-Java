@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.list;
 
 /**
  * K 个一组翻转链表

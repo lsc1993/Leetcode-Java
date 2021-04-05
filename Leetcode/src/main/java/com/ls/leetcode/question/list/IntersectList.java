@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.list;
 
 /**
  * 相交链表

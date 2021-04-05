@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.binarytree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

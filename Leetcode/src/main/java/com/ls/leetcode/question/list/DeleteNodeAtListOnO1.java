@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.list;
 
 /**
  * 在O(1)时间删除链表节点

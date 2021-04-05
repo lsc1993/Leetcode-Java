@@ -1,4 +1,7 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.sort;
+
+import com.ls.leetcode.question.sort.HeapSort;
+import com.ls.leetcode.question.sort.QuickSort;
 
 /**
  * 最大的K个数
