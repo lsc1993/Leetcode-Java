@@ -1,0 +1,58 @@
+package com.ls.leetcode.question.binarytree;
+
+/**
+ * 给定一个二叉树，判断它是否是高度平衡的二叉树。
+ * 本题中，一棵高度平衡二叉树定义为：
+ *   一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1 。
+ *
+ * @link https://leetcode-cn.com/problems/balanced-binary-tree/
+ *
+ * @author liushuanggo@gmail.com
+ * @since 2021-4-5
+ */
+public class BalancedBinaryTree {
+
+    private boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int leftHeight= treeHeight(root.left);
+        int rightHeight = treeHeight(root.right);
+        return Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    /**
+     * 自顶向下递归
+     */
+    private int treeHeight(TreeNode node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return Math.max(treeHeight(node.left), treeHeight(node.right)) + 1;
+        }
+    }
+
+    private boolean isBalanced2(TreeNode root) {
+        return height(root) >= 0;
+    }
+
+    /**
+     * 自底向上递归
+     * 时间复杂度：O(n)，其中 n 是二叉树中的节点个数。使用自底向上的递归，每个节点的计算高度和判断是否平衡都只需要处理一次，最坏情况下需要遍历二叉树中的所有节点，因此时间复杂度是 O(n)。
+     * 空间复杂度：O(n)，其中 n 是二叉树中的节点个数。空间复杂度主要取决于递归调用的层数，递归调用的层数不会超过 n。
+     */
+    private int height(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+
+        if (leftHeight == -1 || rightHeight == -1 || Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        } else {
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
+}
