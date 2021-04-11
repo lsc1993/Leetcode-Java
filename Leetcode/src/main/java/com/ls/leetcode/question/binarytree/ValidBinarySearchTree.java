@@ -23,7 +23,6 @@ public class ValidBinarySearchTree {
      */
     public boolean isValidBST(TreeNode root) {
         Deque<TreeNode> deque = new LinkedList<>();
-        deque.push(root);
         double inOrder = -Double.MAX_VALUE;
         while (!deque.isEmpty() || root != null) {
             while (root != null) {
