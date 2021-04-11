@@ -21,7 +21,7 @@ public class RecreateBinaryTree {
 
         BinaryTree binaryTree = new BinaryTree();
 
-        binaryTree = createTree(foreForech, middleForech, binaryTree);
+        //binaryTree = buildTree(foreForech, middleForech, binaryTree);
 
         BinaryTree fore = binaryTree;
         preOrderTraversal(fore);
@@ -34,22 +34,22 @@ public class RecreateBinaryTree {
         levelTraversal(binaryTree);
     }
 
-    private static BinaryTree createTree(int[] fore, int[] middle, BinaryTree binaryTree) {
-        if (fore.length == 0) {
+    private static TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0) {
             return null;
         }
-
-        if (fore.length == 1) {
-            binaryTree.value = fore[0];
+        TreeNode binaryTree = new TreeNode();
+        if (preorder.length == 1) {
+            binaryTree.val = preorder[0];
             binaryTree.left = null;
             binaryTree.right = null;
             return binaryTree;
         }
 
-        binaryTree.value = fore[0];
+        binaryTree.val = preorder[0];
         int rootIndex = 0;
-        for (int i = 0; i < fore.length; ++ i) {
-            if (fore[0] == middle[i]) {
+        for (int i = 0; i < preorder.length; ++ i) {
+            if (preorder[0] == inorder[i]) {
                 rootIndex = i;
             }
         }
@@ -58,22 +58,22 @@ public class RecreateBinaryTree {
         int[] subMiddleLeft = new int[rootIndex];
         int[] subForeLeft = new int[rootIndex];
         for (int i = 0;i < rootIndex; ++i) {
-            subMiddleLeft[i] = middle[i];
-            subForeLeft[i] = fore[i + 1];
+            subMiddleLeft[i] = inorder[i];
+            subForeLeft[i] = preorder[i + 1];
         }
 
-        binaryTree.left = createTree(subForeLeft, subMiddleLeft, new BinaryTree());
+        binaryTree.left = buildTree(subForeLeft, subMiddleLeft);
 
         //获取右子节点前序遍历和中序遍历
-        int rLen = middle.length - rootIndex - 1;
+        int rLen = inorder.length - rootIndex - 1;
         int[] subMiddleRight = new int[rLen];
         int[] subForeRight = new int[rLen];
         for (int i = 0; i < rLen; ++i) {
-            subMiddleRight[i] = middle[rootIndex + i + 1];
-            subForeRight[i] = fore[rootIndex + i + 1];
+            subMiddleRight[i] = inorder[rootIndex + i + 1];
+            subForeRight[i] = preorder[rootIndex + i + 1];
         }
 
-        binaryTree.right = createTree(subForeRight, subMiddleRight, new BinaryTree());
+        binaryTree.right = buildTree(subForeRight, subMiddleRight);
 
 
         return binaryTree;
