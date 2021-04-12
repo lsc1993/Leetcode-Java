@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.math;
 
 /**
  * 实现数值的整数次方
