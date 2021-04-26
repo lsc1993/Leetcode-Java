@@ -4,7 +4,7 @@ package com.ls.leetcode.question.dp;
  * 最长回文子串
  * 给你一个字符串 s，找到 s 中最长的回文子串。
  *
- * @{}link https://leetcode-cn.com/problems/longest-palindromic-substring/
+ * {}@link https://leetcode-cn.com/problems/longest-palindromic-substring/
  *
  * @author liushuanggo@gamil.com
  * @since 2021-4-23
