@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.dp;
 
 /**
  * 青蛙跳台阶问题
