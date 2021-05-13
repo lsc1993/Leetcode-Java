@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.array;
 
 import com.ls.leetcode.util.Log;
 
