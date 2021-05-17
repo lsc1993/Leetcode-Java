@@ -1,4 +1,4 @@
-package com.ls.leetcode.question.dp;
+package com.ls.leetcode.question.doubleponiter;
 
 /**
  *  判断子序列
