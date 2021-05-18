@@ -46,18 +46,20 @@ public class ListLatButKNode {
         return pBehind;
     }
 
-    static ListNode lastButKNode2(ListNode node, int k) {
-        if (k == 0 || node == null) {
+    static ListNode lastButKNode2(ListNode head, int k) {
+        if (k == 0 || head == null) {
             return null;
         }
 
-        ListNode pHead = node; //头指针,记录走的位置
-        ListNode pBehind = node;//后指针,记录倒数K的位置
+        ListNode pHead = head; //头指针,记录走的位置
+        ListNode pBehind = head;//后指针,记录倒数K的位置
         //1.先走K步
-        for (int i = 0;i < k - 1; ++i) {
-            if (pHead.next != null) {
-                pHead = pHead.next;
-            } else {
+        for (int i = 0; i < k; ++i) {
+            pHead = pHead.next;
+            if (pHead == null && i == k - 1) {
+                return head;
+            }
+            if (pHead == null && i < k - 1) {
                 return null;
             }
         }
