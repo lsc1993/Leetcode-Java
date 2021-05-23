@@ -1,4 +1,4 @@
-package com.ls.leetcode.question;
+package com.ls.leetcode.question.design;
 
 import java.util.concurrent.*;
 
