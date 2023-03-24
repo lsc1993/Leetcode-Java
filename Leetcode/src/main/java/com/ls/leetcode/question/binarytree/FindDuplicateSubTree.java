@@ -20,6 +20,27 @@ public class FindDuplicateSubTree {
     Map<String, Integer> count = new HashMap<>();
     List<TreeNode> ans = new ArrayList<>();
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(3);
+        root.left = left;
+        root.right = right;
+        TreeNode leftI = new TreeNode(4);
+        left.left = leftI;
+        TreeNode leftII = new TreeNode(2);
+        TreeNode rightI = new TreeNode(4);
+        right.left = leftII;
+        right.right = rightI;
+        TreeNode leftIII = new TreeNode(4);
+        TreeNode rightII = new TreeNode(5);
+        leftII.left = leftIII;
+        leftII.right = rightII;
+
+        FindDuplicateSubTree find = new FindDuplicateSubTree();
+        find.findDuplicateSubtrees(root);
+    }
+
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         collect(root);
         return ans;
@@ -31,6 +52,7 @@ public class FindDuplicateSubTree {
         }
 
         String serial = root.val + "," + collect(root.left) + "," + collect(root.right);
+        System.out.println(serial);
         count.put(serial, count.getOrDefault(serial, 0) + 1);
         if (count.get(serial) == 2) {
             ans.add(root);
