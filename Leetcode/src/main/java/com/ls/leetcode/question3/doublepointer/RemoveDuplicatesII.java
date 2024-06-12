@@ -1,6 +1,6 @@
 package com.ls.leetcode.question3.doublepointer;
 
-public class RemoveDuplicates {
+public class RemoveDuplicatesII {
 
     public int removeDuplicates(int[] nums) {
         int len = nums.length;
